@@ -1,0 +1,54 @@
+server:
+  port: 9999
+spring:
+  application:
+    name: API-GATEWAY
+  cloud:
+    nacos:
+      server-addr: 192.168.75.128:8848
+    gateway:
+      routes:
+        # sms
+        - id: sms_route
+          uri: lb://API-SMS
+          predicates:
+            - Path=/api/captchas/**
+          filters:
+            - StripPrefix=1
+        # user
+        - id: users_route
+          uri: lb://API-USERS
+          predicates:
+            - Path=/api/users/**,/api/tokens/**,/api/user/**,/api/user/played/**
+          filters:
+            - StripPrefix=1
+        # category
+        - id: category_route
+          uri: lb://API-CATEGORIES
+          predicates:
+            - Path=/api/categories/**,/api/categories
+          filters:
+            - StripPrefix=1
+        # video
+        - id: video_route
+          uri: lb://API-VIDEOS
+          predicates:
+            - Path=/api/recommends,/api/videos/**,/api/videos
+          filters:
+            - StripPrefix=1
+        # search
+        - id: search_route
+          uri: lb://API-SEARCH
+          predicates:
+            - Path=/api/search/videos
+          filters:
+            - StripPrefix=1
+
+
+
+      globalcors:
+        cors-configurations:
+          '[/**]':
+            allowedOrigins: "*"
+            allowedMethods: "*"
+            allowedHeaders: "*"

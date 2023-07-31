@@ -1,0 +1,23 @@
+server:
+  port: 9991
+spring:
+  application:
+    name: API-CATEGORIES
+  cloud:
+    nacos:
+      server-addr: 192.168.75.128:8848
+  datasource:
+    type: com.alibaba.druid.pool.DruidDataSource
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://192.168.75.128:3306/yingxue?serverTimezone=UTC
+    username: root
+    password: 20030604
+  redis:
+    host: 192.168.75.128
+    port: 6379
+mybatis:
+  type-aliases-package: com.baizhi.entity
+  mapper-locations: classpath:com/baizhi/mapper/*.xml
+logging:
+  level:
+    com.baizhi.dao: debug

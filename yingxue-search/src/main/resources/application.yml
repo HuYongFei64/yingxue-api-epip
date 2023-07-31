@@ -1,0 +1,17 @@
+server:
+  port: 9095
+spring:
+  application:
+    name: API-SEARCH
+  cloud:
+    nacos:
+      server-addr: 192.168.75.128:8848
+  rabbitmq:
+    host: 192.168.75.128
+    port: 5672
+    username: guest
+    password: guest
+    virtual-host: /
+  redis:
+    host: 192.168.75.128
+    port: 6379
